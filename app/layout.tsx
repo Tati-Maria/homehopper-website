@@ -1,8 +1,10 @@
 import ClientOnly from './components/ClientOnly';
 import Footer from './components/footer/Footer';
 import Navbar from './components/nav/Navbar';
+import RegisterModal from './components/modals/RegisterModal';
 import {Poppins} from "next/font/google"
 import './globals.css'
+
 
 export const metadata = {
   title: 'Homehopper',
@@ -25,6 +27,7 @@ export default function RootLayout({
       className={poppins.className}
       >
         <ClientOnly>
+          <RegisterModal />
           <Navbar />
         </ClientOnly>
         <main className='min-h-screen'>
