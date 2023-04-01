@@ -4,6 +4,7 @@ import Navbar from './components/nav/Navbar';
 import RegisterModal from './components/modals/RegisterModal';
 import {Poppins} from "next/font/google"
 import './globals.css'
+import ToasterProvider from './providers/ToasterProvider';
 
 
 export const metadata = {
@@ -27,6 +28,7 @@ export default function RootLayout({
       className={poppins.className}
       >
         <ClientOnly>
+          <ToasterProvider />
           <RegisterModal />
           <Navbar />
         </ClientOnly>

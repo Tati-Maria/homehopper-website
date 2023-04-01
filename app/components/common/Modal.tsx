@@ -43,6 +43,7 @@ const Modal: React.FC<ModalProps> = ({
         }, 300);
     }, [disabled, onClose]);
 
+    //submit button
     const handleSubmitted = useCallback(() => {
         if(disabled) return;
         onSubmitted();
@@ -176,8 +177,8 @@ const Modal: React.FC<ModalProps> = ({
                             disabled={disabled}
                             onClick={handleSubmitted}
                             />
-                            {footer}
                         </div>
+                        {footer}
                     </div>
                 </div>
             </div>

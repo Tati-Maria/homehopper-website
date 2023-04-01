@@ -17,6 +17,9 @@ import {
 import Modal from "../common/Modal";
 import Heading from "../common/Heading";
 import Input from "../inputs/Input";
+//toast for notifications (npm i react-hot-toast)
+import toast from "react-hot-toast";
+import Button from "../common/Button";
 
 
 //the actual component
@@ -45,9 +48,7 @@ export default function RegisterModal() {
             setLoading(false);
             registerModal.onClose();
         }).catch((error) => {
-            console.log(error.response.data.message);
-            setLoading(false);
-            setError(error.response.data.message);
+            toast.error('Something went wrong');
         }).finally(() => {
             setLoading(false);
         })
@@ -87,7 +88,36 @@ export default function RegisterModal() {
             required 
             />
         </div>
-    )
+    );
+
+    const footerContent = (
+        <div
+        className='flex flex-col gap-4 mt-3'
+        >
+            <Button
+            outline
+            label="Continue with Google"
+            icon={FcGoogle}
+            onClick={() => {}} 
+            />
+            <Button
+            outline
+            label="Continue with Github"
+            icon={AiFillGithub}
+            onClick={() => {}} 
+            />
+            <div
+            className='flex justify-center items-center gap-2' 
+            >
+                <small>
+                    Already have an account? <span
+                    className='text-pink-500 underline cursor-pointer hover:opacity-80 transition-colors'
+                    onClick={registerModal.onClose}
+                    >Login</span>
+                </small>
+            </div>
+        </div>
+    );
 
 
     return (
@@ -99,6 +129,7 @@ export default function RegisterModal() {
         actionLabel="Continue"
         onSubmitted={handleSubmit(onSubmit)}
         body={bodyContent}
+        footer={footerContent}
         />
     )
 }

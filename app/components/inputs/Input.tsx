@@ -78,6 +78,7 @@ const Input = ({
         peer-placeholder-shown:translate-y-0
         peer-focus:scale-75
         peer-focus:-translate-y-4
+        text-sm
         ${errors[id] ? 'text-red-500': 'text-zinc-500'}
         `} 
         htmlFor={id}>
