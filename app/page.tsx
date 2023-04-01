@@ -4,7 +4,7 @@
 
 export default function Home() {
   return (
-    <div className="text-xl text-green-200">
+    <div className="">
       hello homehopper
     </div>
   )
