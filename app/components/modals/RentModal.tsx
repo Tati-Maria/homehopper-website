@@ -15,6 +15,10 @@ import dynamic from "next/dynamic";
 import ContentLayout from "../layouts/ContentLayout";
 import Counter from "../inputs/Counter";
 import ImageUpload from "../inputs/ImageUpload";
+import Input from "../inputs/Input";
+import axios from "axios";
+import {toast} from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 enum STEPS {
   CATEGORY = 0,
@@ -27,6 +31,8 @@ enum STEPS {
 
 const RentModal = () => {
     const rentModal = useRentModal();
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
     const [step, setStep] = useState(STEPS.CATEGORY);
 
@@ -74,6 +80,26 @@ const RentModal = () => {
 
     const handleNext = () => {
       setStep((value) => value + 1);
+    }
+
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+      if(step !== STEPS.PRICE) {
+          return handleNext();
+      }
+
+      setIsLoading(true);
+
+      axios.post('/api/listings', data).then(() => {
+        toast.success('Listing created successfully');
+        router.refresh();
+        reset();
+        setStep(STEPS.CATEGORY);
+        rentModal.close();
+      }).catch(() => {
+        toast.error('Something went wrong');
+      }).finally(() => {
+        setIsLoading(false);
+      })
     }
 
     const actionLabel = useMemo(() => {
@@ -186,11 +212,59 @@ const RentModal = () => {
       )
     }
 
+    if(step === STEPS.DESCRIPTION) {
+      content = (
+        <ContentLayout>
+          <Heading
+            title="Add a description of your listing."
+            subText="This will help guests get a better idea of what your listing is like."
+          />
+          <Input
+          id="title"
+          label="Title"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+           />
+          <Input
+          id="description"
+          label="Description"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+          />
+        </ContentLayout>
+      )
+    }
+
+    if(step === STEPS.PRICE) {
+      content = (
+        <ContentLayout>
+          <Heading
+            title="Set a price for your listing."
+            subText='How much do you want to charge per night?'
+          />
+          <Input
+          id="price"
+          label="Price"
+          type="number"
+          formatPrice
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+          />
+        </ContentLayout>
+      )
+    }
+
   return (
     <Modal
     isOpen={rentModal.isOpen}
     onClose={rentModal.close}
-    onSubmitted={handleNext}
+    onSubmitted={handleSubmit(onSubmit)}
     actionLabel={actionLabel}
     secondaryActionLabel={secondaryActionLabel}
     secondaryAction={step === STEPS.CATEGORY ? undefined : handleBack}

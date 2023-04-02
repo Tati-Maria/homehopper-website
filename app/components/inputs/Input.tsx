@@ -2,7 +2,7 @@
 import { BiDollar } from 'react-icons/bi'
 import { UseFormRegister, FieldValues, FieldErrors } from 'react-hook-form'
 
-interface InputProps {
+export interface InputProps {
     id: string;
     label: string;
     type?: string;
@@ -11,6 +11,7 @@ interface InputProps {
     required?: boolean;
     register: UseFormRegister<FieldValues>;
     errors: FieldErrors;
+    multiline?: boolean;
 }
 
 const Input = ({
