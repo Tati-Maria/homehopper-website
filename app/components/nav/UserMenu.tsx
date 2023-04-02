@@ -12,6 +12,7 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 import { SafeUser } from '@/app/types';
 //signOut next-auth
 import { signOut } from 'next-auth/react';
+import { useRentModal } from '@/app/hooks/useRentModal';
 
 interface UserMenuProps {
     currentUser?: SafeUser | null;
@@ -20,6 +21,7 @@ interface UserMenuProps {
 export default function UserMenu ({currentUser}: UserMenuProps) {
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
+    const rentModal = useRentModal();
     const [isOpen, setIsOpen] = useState(false);
 
 
@@ -27,9 +29,13 @@ export default function UserMenu ({currentUser}: UserMenuProps) {
         setIsOpen((value) => !value)
     }, [])
 
-    const handleUserMenu = () => {
-        console.log('User Menu')
-    }
+    const handleUserMenu = useCallback(() => {
+        if(!currentUser) {
+            return loginModal.onOpen();
+        }
+        // open rent modal
+        rentModal.open();
+    }, [currentUser, loginModal, rentModal])
 
     return(
         <div
@@ -68,7 +74,7 @@ export default function UserMenu ({currentUser}: UserMenuProps) {
                         {currentUser ? (
                             <>
                                 <MenuItem
-                                handleClick={() => {}}
+                                handleClick={rentModal.open}
                                 label='Become a host' 
                                 />
                                 <MenuItem

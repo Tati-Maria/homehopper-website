@@ -7,6 +7,7 @@ import {useCallback, useState} from "react";
 //hooks
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import {signIn} from "next-auth/react";
+import useLoginModal from "@/app/hooks/useLoginModal";
 //types for react-hook-form
 import {
     FieldValues,
@@ -17,10 +18,9 @@ import {
 import Modal from "../common/Modal";
 import Heading from "../common/Heading";
 import Input from "../inputs/Input";
+import Button from "../common/Button";
 //toast for notifications (npm i react-hot-toast)
 import toast from "react-hot-toast";
-import Button from "../common/Button";
-import useLoginModal from "@/app/hooks/useLoginModal";
 
 
 //the actual component

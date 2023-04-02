@@ -57,7 +57,7 @@ model Listing {
   numOfGuests Int
   roomCount Int
   bathroomCount Int
-  bookings  Int
+  bookings  Int?
   rating    Float?
   reviews   Int?
   createdAt DateTime @default(now()) @map("created_at")
