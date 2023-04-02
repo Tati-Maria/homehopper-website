@@ -14,6 +14,7 @@ import CountrySelect from "../inputs/CountrySelect";
 import dynamic from "next/dynamic";
 import ContentLayout from "../layouts/ContentLayout";
 import Counter from "../inputs/Counter";
+import ImageUpload from "../inputs/ImageUpload";
 
 enum STEPS {
   CATEGORY = 0,
@@ -166,6 +167,21 @@ const RentModal = () => {
             subtitle="How many bathrooms?"
            />
           
+        </ContentLayout>
+      )
+    }
+
+    if(step === STEPS.IMAGES) {
+      content = (
+        <ContentLayout>
+          <Heading
+            title="Add a photo of your listing."
+            subText="This will help guests get a better idea of what your listing is like."
+          />
+          <ImageUpload
+          value={watch('image')}
+          onUpload={(value) => setCustomValue('image', value)} 
+          />
         </ContentLayout>
       )
     }
