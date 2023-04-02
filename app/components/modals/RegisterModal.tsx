@@ -3,10 +3,10 @@
 import axios from "axios";
 //icons
 import {FcGoogle} from "react-icons/fc";
-import {AiFillGithub} from "react-icons/ai";
 import {useCallback, useState} from "react";
 //hooks
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import {signIn} from "next-auth/react";
 //types for react-hook-form
 import {
     FieldValues,
@@ -98,14 +98,9 @@ export default function RegisterModal() {
             outline
             label="Continue with Google"
             icon={FcGoogle}
-            onClick={() => {}} 
+            onClick={() => signIn('google')} 
             />
-            <Button
-            outline
-            label="Continue with Github"
-            icon={AiFillGithub}
-            onClick={() => {}} 
-            />
+            
             <div
             className='flex justify-center items-center gap-2' 
             >

@@ -8,13 +8,13 @@ import MenuItem from './MenuItem';
 //hooks
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
-//types prisma
-import { User } from '@prisma/client';
+//types
+import { SafeUser } from '@/app/types';
 //signOut next-auth
 import { signOut } from 'next-auth/react';
 
 interface UserMenuProps {
-    currentUser?: User | null;
+    currentUser?: SafeUser | null;
 }
 
 export default function UserMenu ({currentUser}: UserMenuProps) {
@@ -55,7 +55,7 @@ export default function UserMenu ({currentUser}: UserMenuProps) {
                     <div
                     className="hidden md:block"
                     >
-                        <Avatar />
+                        <Avatar src={currentUser?.image} />
                     </div>
                 </button>
             </div>

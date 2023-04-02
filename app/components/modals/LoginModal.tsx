@@ -100,13 +100,7 @@ export default function LoginModal() {
             outline
             label="Continue with Google"
             icon={FcGoogle}
-            onClick={() => {}} 
-            />
-            <Button
-            outline
-            label="Continue with Github"
-            icon={AiFillGithub}
-            onClick={() => {}} 
+            onClick={() => signIn('google')} 
             />
             <div
             className='flex justify-center items-center gap-2' 
@@ -114,7 +108,7 @@ export default function LoginModal() {
                 <small>
                     Do not have an account yet?<span
                     className='text-extra-violet underline cursor-pointer hover:opacity-80 transition-colors'
-                    onClick={registerModal.onClose}
+                    onClick={loginModal.onOpen}
                     >Register</span>
                 </small>
             </div>
