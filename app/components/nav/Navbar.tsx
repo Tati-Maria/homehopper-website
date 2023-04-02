@@ -5,6 +5,7 @@ import Container from "../layouts/Container";
 import FlexLayout from "../layouts/FlexLayout";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
+import Categories from "./Categories";
 
 interface NavbarProps {
     currentUser?: SafeUser | null;
@@ -26,6 +27,7 @@ export default function Navbar({currentUser}: NavbarProps) {
                     </FlexLayout>
                 </Container>
             </nav>
+            <Categories />
         </header>
             
     )

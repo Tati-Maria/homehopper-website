@@ -65,6 +65,11 @@ export default function LoginModal() {
         })
     }
 
+    const toggleModal = useCallback(() => {
+        loginModal.onClose();
+        registerModal.onOpen();
+    } , [loginModal, registerModal]);    
+
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <Heading
@@ -108,7 +113,7 @@ export default function LoginModal() {
                 <small>
                     Do not have an account yet?<span
                     className='text-extra-violet underline cursor-pointer hover:opacity-80 transition-colors'
-                    onClick={loginModal.onOpen}
+                    onClick={toggleModal}
                     >Register</span>
                 </small>
             </div>

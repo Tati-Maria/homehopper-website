@@ -20,11 +20,13 @@ import Input from "../inputs/Input";
 //toast for notifications (npm i react-hot-toast)
 import toast from "react-hot-toast";
 import Button from "../common/Button";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 
 //the actual component
 export default function RegisterModal() {
     const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -53,6 +55,11 @@ export default function RegisterModal() {
             setLoading(false);
         })
     }
+
+    const toggleModal = useCallback(() => {
+        registerModal.onClose();
+        loginModal.onOpen();
+    } , [loginModal, registerModal]);  
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
@@ -107,7 +114,7 @@ export default function RegisterModal() {
                 <small>
                     Already have an account? <span
                     className='text-extra-violet underline cursor-pointer hover:opacity-80 transition-colors'
-                    onClick={registerModal.onClose}
+                    onClick={toggleModal}
                     >Login</span>
                 </small>
             </div>
