@@ -4,8 +4,13 @@ import Container from "../layouts/Container";
 import FlexLayout from "../layouts/FlexLayout";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
+import {User} from "@prisma/client"
 
-export default function Navbar() {
+interface NavbarProps {
+    currentUser?: User | null;
+}
+
+export default function Navbar({currentUser}: NavbarProps) {
     return(
         <header
         className='fixed w-full bg-white z-10 shadow-sm'
@@ -17,7 +22,7 @@ export default function Navbar() {
                     <FlexLayout>
                         <Logo />
                         <Search />
-                        <UserMenu />
+                        <UserMenu currentUser={currentUser} />
                     </FlexLayout>
                 </Container>
             </nav>

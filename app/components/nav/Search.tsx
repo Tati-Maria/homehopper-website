@@ -10,7 +10,7 @@ const Search = () => {
         className='flex items-center justify-between'
         >
             <div
-            className='text-sm text-gray-500 px-2'
+            className='text-sm text-gray-500 px-6'
             >
                 Anywhere
             </div>
@@ -48,7 +48,7 @@ const Search = () => {
                 className='
                 p-2
                 rounded-full
-                bg-rose-500
+                bg-extra-violet
                 text-white
                 '
                 >

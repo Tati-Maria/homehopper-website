@@ -7,6 +7,9 @@ import {AiFillGithub} from "react-icons/ai";
 import {useCallback, useState} from "react";
 //hooks
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
+import {signIn} from "next-auth/react"
+import {useRouter} from "next/navigation";
 //types for react-hook-form
 import {
     FieldValues,
@@ -17,16 +20,17 @@ import {
 import Modal from "../common/Modal";
 import Heading from "../common/Heading";
 import Input from "../inputs/Input";
+import Button from "../common/Button";
 //toast for notifications (npm i react-hot-toast)
 import toast from "react-hot-toast";
-import Button from "../common/Button";
 
 
 //the actual component
-export default function RegisterModal() {
+export default function LoginModal() {
     const registerModal = useRegisterModal();
-    const [error, setError] = useState("");
+    const loginModal = useLoginModal();
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     //form control
     const {
@@ -35,7 +39,6 @@ export default function RegisterModal() {
         formState: {errors},
     } = useForm<FieldValues>({
         defaultValues: {
-            name: "",
             email: "",
             password: "",
         }
@@ -43,10 +46,18 @@ export default function RegisterModal() {
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setLoading(true);
-        axios.post("/api/register", data)
-        .then(() => {
-            setLoading(false);
-            registerModal.onClose();
+        signIn('credentials', {
+            ...data,
+            redirect: false,
+        })
+        .then((response) => {
+            if(response?.error) {
+                toast.error(response.error);
+            } else {
+                toast.success('Logged in successfully');
+                router.refresh();
+                loginModal.onClose();
+            }
         }).catch((error) => {
             toast.error('Something went wrong');
         }).finally(() => {
@@ -57,17 +68,8 @@ export default function RegisterModal() {
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <Heading
-            title="Welcome to HomeHopper!"
-            subText="Create an account to get started."
-            />
-            <Input
-            id='name'
-            label='Name'
-            type="text"
-            disabled={loading}
-            register={register}
-            errors={errors}
-            required 
+            title="Welcome Back!"
+            subText="Login to your account to continue"
             />
             <Input
             id='email'
@@ -110,10 +112,10 @@ export default function RegisterModal() {
             className='flex justify-center items-center gap-2' 
             >
                 <small>
-                    Already have an account? <span
+                    Do not have an account yet?<span
                     className='text-extra-violet underline cursor-pointer hover:opacity-80 transition-colors'
                     onClick={registerModal.onClose}
-                    >Login</span>
+                    >Register</span>
                 </small>
             </div>
         </div>
@@ -123,9 +125,9 @@ export default function RegisterModal() {
     return (
         <Modal
         disabled={loading}
-        isOpen={registerModal.isOpen}
-        title="Register"
-        onClose={registerModal.onClose}
+        isOpen={loginModal.isOpen}
+        title="Login"
+        onClose={loginModal.onClose}
         actionLabel="Continue"
         onSubmitted={handleSubmit(onSubmit)}
         body={bodyContent}

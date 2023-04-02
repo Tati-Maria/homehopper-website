@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+  favoriteIds    String[]  @db.ObjectId
+
+  accounts Account[]
+  listings Listing[]
+  reservations Reservation[]
+}
+
+model Account {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  type      String
+  provider  String
+  providerId String
+  refreshToken String? @db.String
+  accessToken String? @db.String
+  accessTokenExpires Int?
+  tokenType String?
+  scope String?
+  id_token String?
+  session_state String?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String    @db.ObjectId
+
+  @@unique([provider, providerId], name: "provider_providerId")
+}
+
+model Listing {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  description String
+  image     String
+  category  String
+  host      User     @relation(fields: [hostId], references: [id], onDelete: Cascade)
+  hostId    String    @db.ObjectId
+  locationValue String
+  price     Int
+  numOfGuests Int
+  roomCount Int
+  bathroomCount Int
+  bookings  Int
+  rating    Float?
+  reviews   Int?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  reservations Reservation[]
+}
+
+model Reservation {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  listing   Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  listingId String    @db.ObjectId
+  tenant    User     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  tenantId  String    @db.ObjectId
+  checkIn   DateTime
+  checkOut  DateTime
+  totalPrice Int
+  createdAt DateTime @default(now()) @map("created_at")
+}

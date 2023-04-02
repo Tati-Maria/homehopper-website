@@ -10,9 +10,10 @@ export default function Logo () {
             onClick={() => router.push('/')} 
             src='/llogo.png' 
             alt="HomeHopper Logo" 
-            width={100} 
+            width={110} 
             height={50}
-            className="hidden md:block cursor-pointer h-auto w-auto" 
+            className="hidden md:block cursor-pointer h-auto w-auto"
+            priority 
             />
         </div>
     )

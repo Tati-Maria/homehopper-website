@@ -33,8 +33,8 @@ const Button = ({
         hover:opacity-80
         transition-opacity
         w-full
-        ${outline ? "border border-gray-300" : "bg-rose-500 text-white"}
-        ${outline ? "border border-black" : "border-rose-500"}
+        ${outline ? "border border-gray-300" : "bg-extra-violet text-white"}
+        ${outline ? "border border-black" : "border-extra-violet"}
         ${outline ? "text-black" : "text-white"}
         ${small ? "py-1 text-sm font-light border-[1px]" : "py-3 text-base font-semibold border-2"}
         `}
