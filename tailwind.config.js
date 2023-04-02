@@ -14,6 +14,9 @@ module.exports = {
         "fluid-1": "repeat(auto-fill, minmax(300px, 1fr))",
         "fluid-2": "repeat(auto-fill, minmax(250px, 1fr))",
       },
+      fontFamily: {
+        satoshi: ["Satoshi", "sans-serif"],
+      }
     },
   },
   plugins: [],
