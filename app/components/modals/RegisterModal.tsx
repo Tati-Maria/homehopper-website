@@ -47,8 +47,9 @@ export default function RegisterModal() {
         setLoading(true);
         axios.post("/api/register", data)
         .then(() => {
-            setLoading(false);
             registerModal.onClose();
+            toast.success('Account created successfully 😀');
+            loginModal.onOpen();
         }).catch((error) => {
             toast.error('Something went wrong');
         }).finally(() => {

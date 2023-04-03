@@ -1,7 +1,6 @@
 'use client'
 import { useCountries } from "@/app/hooks/useCountries";
-import { SafeListing, SafeUser } from "@/app/types";
-import { Listing, Reservation} from "@prisma/client";
+import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import {format} from "date-fns";
@@ -11,7 +10,7 @@ import Button from "./Button";
 
 interface ListingCardProps {
     data: SafeListing;
-    reservation?: Reservation
+    reservation?: SafeReservation
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionLabel?: string;
@@ -101,9 +100,9 @@ export default function ListingCard ({
                 className='flex items-center gap-2'
                 >
                     <p className="font-semibold">
-                        $ {price} / {!reservation && (
+                        $ {price}{!reservation && (
                         <span className="text-indigo-800 font-normal">
-                            night
+                            / night
                         </span>
                     )}
                     </p>
