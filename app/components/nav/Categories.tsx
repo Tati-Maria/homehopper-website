@@ -103,7 +103,7 @@ const Categories = () => {
 
   return (
     <Container>
-        <section
+        <ul
         className="
         pt-4
         flex
@@ -120,7 +120,7 @@ const Categories = () => {
                 selected={selectedCategory === category.label}
                 />
             ))}
-        </section>
+        </ul>
     </Container>
   )
 }

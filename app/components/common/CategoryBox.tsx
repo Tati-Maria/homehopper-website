@@ -41,7 +41,7 @@ const CategoryBox = ({label, icon: Icon, selected}: CategoryBoxProps) => {
     }, [label, params, router]);
 
   return (
-    <div
+    <li
     aria-label='Category'
     aria-details='Category'
     tabIndex={0}
@@ -69,7 +69,7 @@ const CategoryBox = ({label, icon: Icon, selected}: CategoryBoxProps) => {
         >
             {label}
         </span>
-    </div>
+    </li>
   )
 }
 
