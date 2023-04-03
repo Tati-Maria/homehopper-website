@@ -43,7 +43,9 @@ const ListingReservation = (
          <div className="p-4">
             <Button
             label='Reserve'
-            onClick={onSubmit} 
+            onClick={onSubmit}
+            disabled={disabled}
+            loading={disabled} 
             />
          </div>
          <div

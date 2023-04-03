@@ -1,6 +1,7 @@
 'use client'
 
 import { IconType } from "react-icons";
+import Spinner from "./Spinner";
 
 interface ButtonProps {
     label: string;
@@ -9,10 +10,12 @@ interface ButtonProps {
     outline?: boolean;
     small?: boolean;
     icon?: IconType;
+    loading?: boolean;
 }
 
 const Button = ({
     label,
+    loading,
     onClick,
     disabled,
     outline,
@@ -40,7 +43,7 @@ const Button = ({
         `}
         >
             {Icon && <Icon size={24} className="absolute left-4 top-3" />}
-            <span>{label}</span>
+            {loading ? <Spinner /> : (<span>{label}</span>)}
         </button>
     )
 }

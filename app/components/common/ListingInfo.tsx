@@ -3,7 +3,8 @@
 import { useCountries } from "@/app/hooks/useCountries";
 import { SafeUser } from "@/app/types";
 import { IconType } from "react-icons";
-import Avatar from "./Avatar";
+import  {BsPeopleFill} from "react-icons/bs";
+import {BiBed, BiShower} from "react-icons/bi";
 import ListingCategory from "./ListingCategory";
 import dynamic from "next/dynamic";
 
@@ -46,19 +47,22 @@ const ListingInfo = (
                 <small className="text-medium text-extra-violet">
                     Hosted by {host.name}
                 </small>
-                               <ul
+            <ul
                 className="flex gap-4 font-light text-gray-500"
                 >
-                    <li>
+                    <li className="flex items-center">
+                        <BsPeopleFill className="inline-block mr-1" />
                         {guestCount} guests
                     </li>
-                    <li>
+                    <li className="flex items-center">
+                        <BiBed className="inline-block mr-1" />
                         {roomCount} bedrooms
                     </li>
-                    <li>
+                    <li className="flex-items-center">
+                        <BiShower className="inline-block mr-1" />
                         {bathroomCount} bathrooms
                     </li>
-                </ul>
+            </ul>
             </div>
             <hr />
             {category && (

@@ -46,6 +46,10 @@ export default function UserMenu ({currentUser}: UserMenuProps) {
             <div
             className="flex items-center gap-x-2"
             >
+                <small className='hidden md:block font-bold'>
+                    Hello,{' '}
+                    {currentUser && (<span className=' text-extra-violet'>{currentUser.name}</span>)}
+                </small>
                 <button
                 onClick={handleUserMenu}
                 type="button"
