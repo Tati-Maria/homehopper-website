@@ -2,7 +2,7 @@
 
 ## What is Homehopper?
 
-This is an Airbnb-like application built with Next.js, TypeScript, MongoDB, Tailwind CSS, Prisma, and NextAuth. Users can search for and book accommodations, as well as create and manage their own listings. The application will include features such as user authentication, payment processing, and booking management. The application will be built with a mobile-first approach, and will be fully responsive.
+This is an Airbnb-like application built with Next.js, TypeScript, MongoDB, Tailwind CSS, Prisma, and NextAuth. Users can search for and book accommodations, as well as create and manage their own listings. The application includes features such as user authentication, filtering, and booking management. The application is built with a mobile-first approach, and is fully responsive.
 
 ## What is the purpose of this application?
 
