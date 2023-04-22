@@ -11,6 +11,7 @@ interface ButtonProps {
     small?: boolean;
     icon?: IconType;
     loading?: boolean;
+    blue?: boolean;
 }
 
 const Button = ({
@@ -21,6 +22,7 @@ const Button = ({
     outline,
     small,
     icon: Icon,
+    blue
 }: ButtonProps) => {
 
 
@@ -36,6 +38,7 @@ const Button = ({
         hover:opacity-80
         transition-opacity
         w-full
+        ${blue && "bg-blue-500 text-white"}
         ${outline ? "border border-gray-300" : "bg-extra-violet text-white"}
         ${outline ? "border border-black" : "border-extra-violet"}
         ${outline ? "text-black" : "text-white"}

@@ -3,7 +3,7 @@
 import axios from "axios";
 //icons
 import {FcGoogle} from "react-icons/fc";
-import {AiFillGithub} from "react-icons/ai";
+import {AiOutlineFacebook} from "react-icons/ai";
 import {useCallback, useState} from "react";
 //hooks
 import useRegisterModal from "@/app/hooks/useRegisterModal";
@@ -106,6 +106,13 @@ export default function LoginModal() {
             label="Continue with Google"
             icon={FcGoogle}
             onClick={() => signIn('google')} 
+            />
+            <Button
+            blue
+            outline
+            label="Continue with Facebook"
+            icon={AiOutlineFacebook}
+            onClick={() => signIn('facebook')} 
             />
             <div
             className='flex justify-center items-center gap-2' 
