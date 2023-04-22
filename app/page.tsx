@@ -26,26 +26,6 @@ const Home = async ({searchParams}: HomeProps) => {
   return (
     <ClientOnly>
       <Container>
-        {/* <section className="pt-28 grid grid-cols-1 md:grid-cols-2">
-          <div className="flex flex-col justify-center">
-            <h1
-            className="text-4xl font-semibold my-2" 
-            >
-              Welcome to <span className=" text-extra-violet uppercase">Homehopper</span>
-            </h1>
-            <p>
-              Homehopper is a web application that connects travelers with unique and affordable accommodations around the world. Book your stay today and start exploring!
-            </p>
-          </div>
-          <figure>
-            <Image
-            src='/hero-img.png'
-            alt='two people jumping holding suitcases'
-            width={500}
-            height={500} 
-            />
-          </figure>
-        </section> */}
         <section
         className="pt-24 grid grid-cols-fluid-2 gap-8"
         >
