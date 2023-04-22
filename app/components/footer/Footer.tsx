@@ -13,7 +13,7 @@ const Footer = () => {
         >
           Created by{' '} 
         <Link
-        className="text-rose-500 underline" 
+        className="underline text-extra-violet-500 hover:text-violet-500 visited:text-purple-500" 
         href={'https://github.com/Tati-Maria'}
         >
           Maria

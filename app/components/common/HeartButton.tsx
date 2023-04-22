@@ -1,5 +1,4 @@
 'use client'
-
 import useFavorite from "@/app/hooks/useFavortite";
 import { SafeUser } from "@/app/types";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";

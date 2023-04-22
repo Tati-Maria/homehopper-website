@@ -79,7 +79,9 @@ export default function ListingCard ({
                 className='aspect-square w-full relative overflow-hidden rounded-xl'
                 >
                     <Image
-                    fill
+                    width={400}
+                    height={400}
+                    priority
                     src={data.image}
                     alt={data.title}
                     className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300 ease-in-out"

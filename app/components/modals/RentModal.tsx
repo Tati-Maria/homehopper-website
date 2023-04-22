@@ -5,20 +5,21 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-import Modal from "../common/Modal";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState, useMemo } from "react";
+import dynamic from "next/dynamic";
+import {toast} from "react-hot-toast";
+//packages on top - local imports below
+import Modal from "../common/Modal";
 import Heading from "../common/Heading";
 import { categories } from "../nav/Categories";
 import CategoryInput from "../common/CategoryInput";
 import CountrySelect from "../inputs/CountrySelect";
-import dynamic from "next/dynamic";
 import ContentLayout from "../layouts/ContentLayout";
 import Counter from "../inputs/Counter";
 import ImageUpload from "../inputs/ImageUpload";
 import Input from "../inputs/Input";
-import axios from "axios";
-import {toast} from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 enum STEPS {
   CATEGORY = 0,
@@ -262,6 +263,7 @@ const RentModal = () => {
 
   return (
     <Modal
+    disabled={isLoading}
     isOpen={rentModal.isOpen}
     onClose={rentModal.close}
     onSubmitted={handleSubmit(onSubmit)}
